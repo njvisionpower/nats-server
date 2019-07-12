@@ -57,6 +57,12 @@ type SublistResult struct {
 	qsubs [][]*subscription // don't make this a map, too expensive to iterate
 }
 
+const (
+	LB_NONE = -1  // don't use loadbalance
+	LB_RR = iota  // round robin
+	LB_WRR        // weighted rr
+)
+
 // A Sublist stores and efficiently retrieves subscriptions.
 type Sublist struct {
 	sync.RWMutex
@@ -70,6 +76,7 @@ type Sublist struct {
 	cacheNum  int32
 	ccSweep   int32
 	count     uint32
+	lbtype    uint32  // load balance type
 }
 
 // A node contains subscriptions and a pointer to the next level.

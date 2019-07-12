@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/nats-io/nats-server/v2/server"
+	"nats-server/server"
 )
 
 var usageStr = `
